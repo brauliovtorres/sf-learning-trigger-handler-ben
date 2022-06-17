@@ -28,7 +28,8 @@ By utilizing this tick box, we can turn on/off all triggers in one click. It’s
 ## The Trigger Helper
 - This is where you write your small bite-sized tasks (not related to computer bytes). Rename the functions as required.
 - From within the `<your-project>` directory, run this command from the root of your project: `sfdx force:apex:class:create -n AccountTriggerHelper -d force-app/main/default/classes`
-
+- Open `AccountTriggerHelper.cls` and replace the scaffold code with this code, then save the file.
+- Now, push (synchronize) your new code to the scratch org: `sfdx force:source:push`
 
 ## The Trigger Handler Interface
 - Interfaces enforce developers to follow the same blueprint. So there should be only one TriggerHandler Interface in the whole org; not one per object.
