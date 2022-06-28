@@ -43,7 +43,25 @@ By utilizing this tick box, we can turn on/off all triggers in one click. It’s
 - Open `AccountTriggerHandler.cls` and replace the scaffold code with this code, then save the file.
 - Now, push (synchronize) your new code to the scratch org: `sfdx force:source:push`
 
-
 ## The Single Trigger Per Object
 - Here is the single trigger for the Account object. Don’t forget to uncomment your required lines of code.
 - From within the `<your-project>` directory, run this command from the root of your project: `sfdx force:apex:trigger:create -n AccountTrigger -s Account -e 'before insert, before update, before delete, after insert, after update, after delete, after undelete' -d ./force-app/main/default/triggers`
+
+## Test Class
+- From within the `<your-project>` directory, run this command from the root of your project: `sfdx force:apex:class:create -n AccountTriggerHelperTest -d force-app/main/default/classes`
+- Open `AccountTriggerHelperTest.cls` and replace the scaffold code with this code, then save the file.
+- Now, push (synchronize) your new code to the scratch org: `sfdx force:source:push`
+
+### Metadata Magic: Pull Changes into Your Project
+- In the root directory of your `<your-project>`, open the `.forceignore` file and add `**/profiles` as a new line to the file, then save the file.
+- In the command window, sync the changes you made in the scratch org with your local project: `sfdx force:source:pull`
+
+### Validate Your App
+- Create a new scratch org: `sfdx force:org:create -f config/project-scratch-def.json -a <your-test-org>`
+- Push your local source and metadata to the scratch org: `sfdx force:source:push -u <your-test-org>`
+- Open your org: `sfdx force:org:open -u <your-test-org>`
+- Run `AccountTriggerHelperTest.cls` test class
+
+### Delete and Logout
+- `sfdx force:org:delete -u <your-org-alias>`
+- `sfdx auth:logout --all`
